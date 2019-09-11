@@ -746,7 +746,7 @@ void FS_InitFilesystemEx( qbool guess_cwd ) {
 	//	*com_homedir = 0;
 	//}
 #else
-	if (!(ev = getenv("XDG_CONFIG_HOME") && !(env = getenv("HOME")))
+	if (!(ev = getenv("XDG_CONFIG_HOME") && !(ev = getenv("HOME"))))
 		com_homedir[0] = 0;
 	else
 		strlcpy(com_homedir, ev, sizeof(com_homedir));
@@ -760,7 +760,7 @@ void FS_InitFilesystemEx( qbool guess_cwd ) {
 #ifdef _WIN32
 		strlcat(com_homedir, "/ezQuake", sizeof(com_homedir));
 #else
-		if (getenv("XDG_CONFIG_HOME")
+		if (getenv("XDG_CONFIG_HOME"))
 			strlcat(com_homedir, "/ezquake", sizeof(com_homedir));
 		else
 			strlcat(com_homedir, "/.ezquake", sizeof(com_homedir));
